@@ -44,8 +44,19 @@ using namespace std;
 	}
 
 	// Load the images
-  image = imread( argv[1], 1 ); // XXX vmazoyer: what if the file can't be read?
+  image = imread( argv[1], 1 );
+	if(image.empty())
+	{
+		cerr << "Could not open image. Aborting" << endl;
+		exit(1);
+	}
+
 	mask = imread( argv[2], 1 );
+	if(mask.empty())
+	{
+		cerr << "Could not open mask. Aborting" << endl;
+		exit(1);
+	}
 
 	// image and mask should have the same size
 	if(image.cols != mask.cols)
